@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pookie Sukyoung</title>
+    <style>
+        body {
+            background-color: #FF69B4;
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+        }
+        .background-image {
+            width: 100%;
+            height: 100vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .next-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="bg-image" class="background-image">
+            <h2 id="header-text">Welcome to the Page</h2>
+        </div>
+        <div id="button-container" class="buttons">
+            <button class="next-button" onclick="nextPage()">Next</button>
+        </div>
+    </div>
+    <script>
+const images = [
+'images/image1.JPG',
+'images/image2.jpg',
+'images/image3.jpg',
+'images/image4.jpg',
+'images/image5.jpg',
+'images/image6.jpg',
+'images/image7.jpg'
+];
+const headers = [
+'I need to tell you something...',
+'Its super important...',
+"Don't tell anyone else",
+'You are a cutie pookie!!',
+'Also....',
+'Be my Valentine!',
+'See you soon baby'
+];
+        let index = 0;
+        
+        function nextPage() {
+            index = (index + 1) % images.length;
+            document.getElementById('bg-image').style.backgroundImage = `url(${images[index]})`;
+            document.getElementById('header-text').innerText = headers[index];
+            updateButtons();
+        }
+        
+        function updateButtons() {
+            const buttonContainer = document.getElementById('button-container');
+            buttonContainer.innerHTML = '';
+            
+            if (index === 5) {
+                const option1 = document.createElement('button');
+                option1.className = 'next-button';
+                option1.innerText = 'Yes';
+                option1.onclick = nextPage;
+                
+                const option2 = document.createElement('button');
+                option2.className = 'next-button';
+                option2.innerText = 'Yes';
+                option2.onclick = nextPage;
+                
+                buttonContainer.appendChild(option1);
+                buttonContainer.appendChild(option2);
+            } else if (index < images.length - 1) {
+                const nextButton = document.createElement('button');
+                nextButton.className = 'next-button';
+                nextButton.innerText = 'Next';
+                nextButton.onclick = nextPage;
+                
+                buttonContainer.appendChild(nextButton);
+            }
+        }
+        
+        document.getElementById('bg-image').style.backgroundImage = `url(${images[index]})`;
+        document.getElementById('header-text').innerText = headers[index];
+    </script>
+</body>
+</html>
+
+
+
